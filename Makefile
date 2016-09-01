@@ -11,7 +11,7 @@ CMD = gfstringq.exe
 # Make sure it is defined
 #          ifeq ($(strip$(FORTRAN_COMPILER)),)
 # Otherwise you can define it here also by uncommenting next line
- FC = icpc -openmp -I$(MKLROOT)/include
+ FC = icpc -v -openmp -I$(MKLROOT)/include
 # FC = g++ -fopenmp -I$(MKLROOT)/include
 # FC = g++ -I$(MKLROOT)/include
 # FC = g++ -g -I$(MKLROOT)/include
@@ -44,7 +44,8 @@ OFLAGS =  # optimization
 
 OBJECTS = gstring.o main.o pTable.o stringtools.o qchem.o utils.o eckart.o mem.o bmat.o print.o icoord.o mm_grad.o optic.o mopac.o grad.o knnr.o ase.o gaussian.o orca.o molpro.o qchemsf.o
 
-$(CMD) : $(OBJECTS)
+#$(CMD) : $(OBJECTS)
+all: $(OBJECTS)
 	$(FC) $(DEBUG_FLAGS) $(OFLAGS) $(OBJECTS) $(LINKERFLAGS)   -o ./$(CMD)
 
 clean:
