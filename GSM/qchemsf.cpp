@@ -243,7 +243,7 @@ double QChemSF::calc_grads(double* coords)
     printf(" failed to open qcout file \n");
     getgrad = 0;
   }
-  while (getline(qcfile, line) && getgrad)
+  while (static_cast<bool>(getline(qcfile, line)) && getgrad)
   {
     if (line.find(test)!=string::npos)
     {
@@ -349,7 +349,7 @@ void QChemSF::get_grads()
   int wg = 0;
   while (!gradfile.eof())
   {
-    success=getline(gradfile, line);
+    success=static_cast<bool>(getline(gradfile, line));
     if (line.find("GSM-formatted gradient")!=string::npos)
     {
       double* gradn = grad1;
@@ -360,7 +360,7 @@ void QChemSF::get_grads()
 
       for (int i=0;i<natoms;i++)
       {
-        success=getline(gradfile, line);
+        success=static_cast<bool>(getline(gradfile, line));
         //cout << "RR " << line << endl;
         int length=StringTools::cleanstring(line);
         vector<string> tok_line = StringTools::tokenize(line, " \t");

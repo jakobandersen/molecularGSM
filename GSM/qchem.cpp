@@ -164,7 +164,7 @@ int QChem::read_hess(double* hess)
     printf(" failed to open qcout file \n");
     return 0;
   }
-  while (getline(qcfile, line) && cont)
+  while (static_cast<bool>(getline(qcfile, line)) && cont)
   {
     if (line.find("Hessian of the SCF Energy")!=string::npos)
     {
@@ -317,7 +317,7 @@ double QChem::grads(double* coords, double* grad)
     printf(" failed to open qcout file \n");
     getgrad = 0;
   }
-  while (getline(qcfile, line) && getgrad)
+  while (static_cast<bool>(getline(qcfile, line)) && getgrad)
   {
     if (StringTools::contains(line, test))
     {
@@ -430,9 +430,9 @@ int QChem::scangradient(string file, double* grad, int natoms)
   bool success = true;
   //cout << "reading gradient... " << endl;
 
-  success=getline(gradfile, line);
-  success=getline(gradfile, line);
-  success=getline(gradfile, line);
+  success=static_cast<bool>(getline(gradfile, line));
+  success=static_cast<bool>(getline(gradfile, line));
+  success=static_cast<bool>(getline(gradfile, line));
 
   for (int i=0;i<natoms;i++)
   {
@@ -442,7 +442,7 @@ int QChem::scangradient(string file, double* grad, int natoms)
       grad[3*i+0] = grad[3*i+1] = grad[3*i+2] = 1.;
       break;
     }
-    success=getline(gradfile, line);
+    success=static_cast<bool>(getline(gradfile, line));
     //cout << "RR " << line << endl;
     int length=StringTools::cleanstring(line);
     vector<string> tok_line = StringTools::tokenize(line, " \t");
