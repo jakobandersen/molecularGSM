@@ -105,7 +105,7 @@ void QChem::init(string infilename, int natoms0, int* anumbers0, string* anames0
   //cout << "  -Finished initializing QCHEM info" << endl;
  
 
-  char* qcPath;
+  const char* qcPath;
   qcPath = getenv ("QCSCRATCH");
 //  if (qcPath!=NULL)
 //    printf (" QCSCRATCH is: %s \n",qcPath);

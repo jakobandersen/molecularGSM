@@ -159,7 +159,7 @@ void Turbomole::init(string infilename, int natoms0, int* anumbers0, string* ana
   //cout << "  -Finished initializing Turbomole info" << endl;
  
 
-  char* turboPath;
+  const char* turboPath;
   turboPath = getenv ("TMSCRATCH");
 //    printf (" TMSCRATCH is: %s \n",turboPath);
 #if TURBOMOLE

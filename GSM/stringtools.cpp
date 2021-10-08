@@ -50,7 +50,7 @@ string StringTools::lowerCase(const string& s)
   for(unsigned int i = 0; i < s.length(); i++)
     buf[i] = tolower(buf[i]);
   string r(buf, s.length());
-  delete buf;
+  delete [] buf;
   return r;
 }
 // converts  atof correctly
@@ -63,7 +63,7 @@ double StringTools::atod(const string& s)
      if (s[i]=='d') buf[i]='e';
 }
   string r(buf, s.length());
-  delete buf;
+  delete [] buf;
   double d=atof(r.c_str());
   return d;
 }

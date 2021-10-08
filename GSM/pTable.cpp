@@ -105,6 +105,8 @@ int PTable::atom_number(string &aname){
       cout << "Failed to find atom named : " << aname << endl;
       exit(-1);
    }
+	cout << "PTable::atom_number: reached end of functoin without return value." << std::endl;
+	std::abort();
 }
 
 
